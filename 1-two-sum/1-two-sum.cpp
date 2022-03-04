@@ -1,3 +1,5 @@
+//we used the found here to stop the loops as soon as we get the ans...
+//this help to reduce the complexities
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
