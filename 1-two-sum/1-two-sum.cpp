@@ -1,28 +1,12 @@
-//we used the found here to stop the loops as soon as we get the ans...
-//this help to reduce the complexities
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        int n=nums.size(),a=0,b=0;
-        bool found = false;
-        for(int i=0;i<n;i++)
-        {
-            for(int j=i+1;j<n;j++)
-            {
-                if(nums[i]+nums[j]==target)
-                {
-                    a=i;
-                    b=j;
-                    found = true;
-                    break;
-                }
-            }
-            if(found)
-                break;
-        }
-         vector<int> ans;
-         ans.push_back(a);
-         ans.push_back(b);
-         return ans;
+        int N = nums.size();
+			for(int i = 0; i < N; ++i) {
+				for(int j = i + 1; j < N; ++j){
+					if(nums[i] + nums[j] == target) {return {i, j};}
+				}
+			}
+			return {};//if we did'nt find any thing to return 
     }
 };
