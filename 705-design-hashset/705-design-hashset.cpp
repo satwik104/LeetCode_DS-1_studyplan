@@ -30,7 +30,7 @@ public:
     vector<list<int>> m;
     int siz;
     MyHashSet() {
-        siz = 100;//eg. size
+        siz = 10;//eg. size
         m.resize(siz);
     }
     //create a hash function which return index of key in vector through maths operation
