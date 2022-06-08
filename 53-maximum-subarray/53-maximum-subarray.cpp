@@ -2,18 +2,34 @@
 //complexity
 class Solution {
 public:
-    int maxSubArray(vector<int>& nums) {
-        int n=nums.size();
-        int sum=0;//initially
-        int max_sum=INT_MIN;
-        for(int i=0;i<n;i++)
-        {
-            sum+=nums[i];
-            max_sum=max(sum,max_sum);
-            if(sum<0)
-                sum=0;//make it 0,becoz we dont want to add a -ive no. to next no.
-            //this is the base of kadane's algo...we dont take sum of subarray if it is -ive
-        }
-        return max_sum;
-    }
+    //approach 1 O(n^3)
+   /* int maxSubArray(vector<int>& nums) {
+        int maxsum=INT_MIN;
+       for(int i=0;i<nums.size();i++)
+       {
+           for(int j=i;j<nums.size();j++)
+           {
+               int window_sum =0;
+               for(int k=i;k<=j;k++)
+               {
+                   window_sum+=nums[k];
+               }
+               maxsum=max(maxsum,window_sum);
+           }
+       }
+        return maxsum;
+    }*/
+    //approach 3 O(n^3)
+   int maxSubArray(vector<int>& nums) {
+       int maxsum=INT_MIN,sum_till_now=0;
+       for(int i=0;i<nums.size();i++)
+       {
+           sum_till_now+=nums[i];
+           maxsum=max(maxsum,sum_till_now);
+           if(sum_till_now<0)
+               sum_till_now=0;
+           
+       }
+       return maxsum;
+   }
 };
