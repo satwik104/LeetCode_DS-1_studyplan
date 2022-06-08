@@ -1,36 +1,26 @@
-******************BRUTFORCE-O(n^3)*********************
 ​
-// Including climits, which allows for usage of INT_MIN constant in C++
-#include <climits>
-​
-class Solution {
-public:
-int maxContiguousSubarraySum(vector<int>& nums) {
-int n = nums.size();
-int maximumSubArraySum = INT_MIN;
-/*
-We will use these outer 2 for loops to investigate all
-windows of the array.
-We plant at each 'left' value and explore every
-'right' value from that 'left' planting.
-These are our bounds for the window we will investigate.
-*/
-for (int left = 0; left < n; left++) {
-for (int right = left; right < n; right++) {
-// Let's investigate this window
-int windowSum = 0;
-// Add all items in the window
-for (int k = left; k <= right; k++) {
-windowSum += nums[k];
-}
-// Did we beat the best sum seen so far?
-maximumSubArraySum = max(maximumSubArraySum, windowSum);
+// Add the current element to previous computed value
+// To get the subarray sum
+runningWindowSum += nums[right];
+// Does this window beat the best sum we have seen so far?
+maximumSubArraySum = max(maximumSubArraySum, runningWindowSum);
 }
 }
 return maximumSubArraySum;
 }
 };
-​
-*********************************OPTIMIZED-O(n^2)*********************
-​
-// Including climits, which allows for usage of INT_MIN constant in C++
+************************************O(n)***********************************
+int maxSubArray(vector<int>& nums) {
+int n=nums.size();
+int sum=0;//initially
+int max_sum=INT_MIN;
+for(int i=0;i<n;i++)
+{
+sum+=nums[i];
+max_sum=max(sum,max_sum);
+if(sum<0)
+sum=0;//make it 0,becoz we dont want to add a -ive no. to next no.
+//this is the base of kadane's algo...we dont take sum of subarray if it is -ive
+}
+return max_sum;
+}
