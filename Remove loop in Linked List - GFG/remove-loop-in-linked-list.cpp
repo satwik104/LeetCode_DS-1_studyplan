@@ -79,20 +79,24 @@ class Solution
     //Function to remove a loop in the linked list.
     void removeLoop(Node* head)
     {
-          Node *fast = head,*slow = head,*hold=head;
-        while(fast && fast->next){
+          Node *fast = head,*slow = head,*ip=head;
+        while(fast && fast->next)
+        {
             fast = fast->next->next;
             slow = slow->next;
-            if(slow == fast){
-                while(slow != hold){
-                    hold=hold->next;
+            if(slow==fast)
+            {
+                while(slow!=ip)
+                {
                     slow=slow->next;
+                    ip=ip->next;
                 }
-                while(fast->next!=slow)fast=fast->next;
-                fast->next = NULL;
+                while(fast->next!=ip) fast=fast->next;
+                fast->next=NULL;
+            }
             }
         }
-    }
+    
 };
 
 // { Driver Code Starts.
